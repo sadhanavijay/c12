@@ -8,7 +8,7 @@ function preload()
   gardenImg = loadImage("garden.png");
   rabbitImg = loadImage("rabbit.png");
   appleImg = loadImage("apple.png")
-  leavesImg = loadImage("leaves.png")
+  leavesImg = loadImage("leaf.png")
 }
 
 function setup()
