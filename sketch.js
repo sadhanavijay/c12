@@ -1,13 +1,14 @@
 var garden,rabbit;
 var gardenImg,rabbitImg;
-var appleImg,leafImg
+var apple,leaves
+var appleImg,leavesImg
 
 function preload()
 {
   gardenImg = loadImage("garden.png");
   rabbitImg = loadImage("rabbit.png");
-  appleImg = loadImage("apple.png.png");
-  leafImg = loadImage("leaf.png");
+  appleImg = loadImage("apple.png")
+  leavesImg = loadImage("leaves.png")
 }
 
 function setup()
@@ -39,40 +40,51 @@ function draw()
 
   rabbit.x = mouseX
   rabbit.collide(edges);
-
-  spawnApple()
-  spawnLeaf()
+  var select_sprites=Math.round(random(1,2));
+  if(frameCount%80===0)
+  {
+    if(select_sprites===1)
+    {
+      spawnApple()
+    }
+    else if (select_sprites===2)
+    {
+      spawnLeaves()
+    }
+  }
+  
+  
   drawSprites();
 }
 
 function spawnApple()
 {
- if(frameCount%60===0)
- {   
-   var apple
-    apple=createSprite(200,30,40,10);
+ 
+    apple=createSprite(280,100,40,10);
     apple.velocityY=3;
     apple.addImage("apple",appleImg);
     apple.scale=0.09;
-    apple.x=Math.round(random(10,360));
+    apple.x=Math.round(random(40,380));
     console.log(frameCount)
-    rabbit.depth=apple.depth+1;
- apple.lifeTime=340
- }
+    apple.depth=rabbit.depth;
+    rabbit.depth=rabbit.depth+1;
+    apple.lifetime=340
+ 
+ 
 }
 
-function spawnLeaf()
+function spawnLeaves()
 {
- if(frameCount%60===0)
- {
-    var leaf
-    leaf=createSprite(200,1,40,10);
-    leaf.velocityY=3;
-    leaf.addImage("leaf",leafImg);
-    leaf.scale=0.05;
-    leaf.x=Math.round(random(10,300));
+ 
+    leaves=createSprite(380,100,40,10);
+    leaves.velocityY=3;
+    leaves.addImage("leaves",leavesImg);
+    leaves.scale=0.05;
+    leaves.x=Math.round(random(50,350));
     console.log(frameCount)
-    rabbit.depth=leaf.depth+1;
-    leaf.lifeTime=340;
- }
+    leaves.depth=rabbit.depth;
+    rabbit.depth=rabbit.depth+1;
+    leaves.lifetime=340
+  
+  
 }
